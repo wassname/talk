@@ -6,7 +6,7 @@ import { GQLSTORY_MODE } from "coral-framework/schema";
 import CLASSES from "coral-stream/classes";
 import { Icon, MatchMedia, Tab, TabBar } from "coral-ui/components";
 
-type TabValue = "COMMENTS" | "PROFILE" | "%future added value";
+type TabValue = "COMMENTS" | "PROFILE" | "CONFIGURE" | "%future added value";
 
 export interface Props {
   activeTab: TabValue;
@@ -52,7 +52,12 @@ const AppTabBar: FunctionComponent<Props> = (props) => {
         </Tab>
       )}
       {props.showConfigureTab && (
-        <Tab className={CLASSES.tabBar.configure} tabID="CONFIGURE">
+        <Tab
+          className={cn(CLASSES.tabBar.configure, {
+            [CLASSES.tabBar.activeTab]: props.activeTab === "CONFIGURE",
+          })}
+          tabID="CONFIGURE"
+        >
           <MatchMedia gteWidth="sm">
             {(matches) =>
               matches ? (

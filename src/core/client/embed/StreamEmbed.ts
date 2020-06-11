@@ -35,6 +35,7 @@ export interface StreamEmbedConfig {
   accessToken?: string;
   bodyClassName?: string;
   enableDeprecatedEvents?: boolean;
+  amp?: boolean;
 }
 
 export class StreamEmbed {
@@ -137,7 +138,7 @@ export class StreamEmbed {
 
     const streamDecorators: ReadonlyArray<Decorator> = [
       withIOSSafariWidthWorkaround,
-      withAutoHeight,
+      withAutoHeight(Boolean(this.config.amp)),
       withClickEvent,
       withSetCommentID,
       withEventEmitter(

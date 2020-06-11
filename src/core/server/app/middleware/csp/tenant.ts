@@ -99,7 +99,7 @@ function generateContentSecurityPolicy(allowedOrigins: string[]) {
 
   // Only the domains that are allowed by the tenant may embed Coral.
   directives.frameAncestors =
-    allowedOrigins.length > 0 ? allowedOrigins : ["'none'"];
+    allowedOrigins.length > 0 ? ["'self'", ...allowedOrigins] : ["'none'"];
 
   // Build the directive.
   const directive = builder({ directives });
